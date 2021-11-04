@@ -1,0 +1,11 @@
+{
+  "name": "satu",
+  "version": "1.0.0",
+  "description": "ini adalah project pertama saya menggunakan NPM package ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hamzah Saiful Madjid",
+  "license": "ISC"
+}
