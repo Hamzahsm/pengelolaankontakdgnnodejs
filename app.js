@@ -1,13 +1,36 @@
-const contacts = require('./contacts.js');
-//varibel fungsi utama 
+// mengambil argumen dari comman line 
 
-const main = async () => {
-    const nama = await contacts.tulisPertanyaan('Masukkan nama anda : ');
-    const noHP = await  contacts.tulisPertanyaan('Masukkan noHP anda :');
-    const email = await contacts.tulisPertanyaan('Masukkan Email anda :');
+const yargs = require('yargs');
+const contacts = require('./contacts');
 
-    //ambil dari module
-    contacts.simpanContact(nama,noHP,email);
 
-    };
-main(); 
+yargs.command({
+    command : 'add',
+    describe: 'menambahkan contact baru',
+    builder : {
+        nama : {
+            describe: 'Nama Lengkap',
+            demandOption : true,
+            type: 'string',
+        },
+        email : {
+            describe: 'Email',
+            demandOption : false,
+            type: 'string',
+        },
+        noHP : {
+            describe: 'noHP',
+            demandOption: true,
+            type: 'string',
+        },
+    },
+
+    handler: function (argv) {
+        contacts.simpanContact(argv.nama, argv.email, argv.noHP);
+        
+    },
+});
+
+
+yargs.parse();
+
